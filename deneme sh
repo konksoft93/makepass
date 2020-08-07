@@ -1,0 +1,36 @@
+#!/bin/bash
+sleep 2
+upper=("A" "B" "C" "D" "E" "F" "G" "H" "I" "K" "L" "M" "N" "O" "P" "Q" "R" "S" "T" "U" "V" "W" "X" "Y" "Z")
+lower=("a" "b" "c" "d" "e" "f" "g" "h" "i" "k" "l" "m" "n" "o" "p" "q" "r" "s" "t" "u" "v" "w" "x" "y" "z")
+number=("0" "1" "2" "3" "4" "5" "6" "7" "8" "9")
+symbol=("." "," ":" ";" "!" "'" "^" "+" "%" "&" "/" "(" ")" "=" "_" "*" "<" ">" "#" "$" "½" "{" "[" "]" "}" "@")
+a2=$2
+if [[ $1 == "" ]] || [[ $1 == " " ]];then
+        printf "Yardım Sayfasına ulaşmak\n --help, -h, -help, ? \n"
+fi
+if [[ $1 == "--help" ]] || [[ $1 == "-help" ]] || [[ $1 == "?" ]] || [[ $1 == "-h" ]];then
+        printf "Yardım Sayfası \n -c kaç karakterlik bir şifre oluşturmak istersiniz örn(makepass -culsn 20)\n -cu sadece büyük harf olsun  örn(makepass -cu 20) \n -cl sadece küçük harf olsun  örn(makepass -cl 20) \n -cs sadece semboller olsun  örn(makepass -cs 20)\n -cn sadece numaralar örn(makepass -cn 20)\n -cul sadece büyük harf ve küçük harfler olsun  örn(makepass -cul 20) \n -cus sadece büyük harf ve semboller olsun  örn(makepass -cus 20) \n -cun sadece büyük harf ve numaralar  örn(makepass -cun 20) \n -cls sadece küçük harfler ve semboller olsun örn(makepass -cls 20)\n -cln sadece küçük harf ve numaralar \n -culsn hem büyük harf hem küçük harf hemsemboller hemde numaralar olsun  örn(makepass -culs 20) \n"
+fi
+
+if [[ $1 == *-c* ]];then
+for ((i=0; i<=a2; i++)); do
+        rand=$(echo $(( $RANDOM % 4 + 1 )))
+        echo -n $u
+        if [ $rand -eq 1 ];then
+        randu=$(echo $(( $RANDOM %  24 + 0 )))
+        u=$(echo ${upper[$randu]})
+        fi
+        if [ $rand -eq 2 ];then
+        randl=$(echo $(( $RANDOM %  24 + 0 )))
+        u=$(echo ${lower[$randl]})
+        fi
+        if [ $rand -eq 3 ];then
+        randun=$(echo $(( $RANDOM %  9 + 0 )))
+        u=$(echo ${number[$randun]})
+        fi
+        if [ $rand -eq 4 ];then
+        randus=$(echo $(( $RANDOM %  25 + 0 )))
+        u=$(echo ${symbol[$randus]})
+        fi
+done
+fi

@@ -1,8 +1,10 @@
 #!/bin/bash
+sleep 2
 upper=("A" "B" "C" "D" "E" "F" "G" "H" "I" "K" "L" "M" "N" "O" "P" "Q" "R" "S" "T" "U" "V" "W" "X" "Y" "Z")
 lower=("a" "b" "c" "d" "e" "f" "g" "h" "i" "k" "l" "m" "n" "o" "p" "q" "r" "s" "t" "u" "v" "w" "x" "y" "z")
 number=("0" "1" "2" "3" "4" "5" "6" "7" "8" "9")
 symbol=("." "," ":" ";" "!" "'" "^" "+" "%" "&" "/" "(" ")" "=" "_" "*" "<" ">" "#" "$" "½" "{" "[" "]" "}" "@")
+a2=0
 a2=$2
 if [[ $1 == "" ]] || [[ $1 == " " ]];then
         printf "Yardım Sayfasına ulaşmak\n --help, -h, -help, ? \n"
@@ -12,33 +14,50 @@ if [[ $1 == "--help" ]] || [[ $1 == "-help" ]] || [[ $1 == "?" ]] || [[ $1 == "-
 fi
 
 if [[ $1 == *-c* ]];then
-for ((i=1 ; i<=a2 ; i )); do
-        rand=$(echo $(( $RANDOM % 4 + 1 )))
-        echo -n $u
+
+for ((i=1;i<=a2;i=$i)) do
+	rand=$(echo $(( $RANDOM %  4 + 1 )))
         if [[ $1 == *u* ]];then
+		i=$i+1
                 if [[ $rand -eq 1 ]];then
                 randu=$(echo $(( $RANDOM %  24 + 0 )))
                 u=$(echo ${upper[$randu]})
-                i=$i+1
-                fi
-        elif [[ $1 == *l* ]];then
+		echo -n  $u
+		else
+			i=$i-1
+
+		fi
+	fi
+        if [[ $1 == *l* ]];then
+		i=$i+1
                 if [[ $rand -eq 2 ]];then
                 randl=$(echo $(( $RANDOM %  24 + 0 )))
                 u=$(echo ${lower[$randl]})
-                i=$i+1
-                fi
-        elif [[ $1 == *n* ]];then
+		echo -n $u
+		else
+			i=$i-1
+		fi
+	fi
+        if [[ $1 == *n* ]];then
+		i=$i+1
                 if [[ $rand -eq 3 ]];then
                 randun=$(echo $(( $RANDOM %  9 + 0 )))
                 u=$(echo ${number[$randun]})
-                i=$i+1
-                fi
-        elif [[ $1 == *s* ]];then
+		echo  -n $u
+		else
+			i=$i-1
+		fi
+	fi
+        if [[ $1 == *s* ]];then
+		i=$i+1
                 if [[ $rand -eq 4 ]];then
                 randus=$(echo $(( $RANDOM %  25 + 0 )))
                 u=$(echo ${symbol[$randus]})
-                i=$i+1
+		echo -n $u
+		else
+			i=$i-1
                 fi
         fi
 done
+echo ""
 fi
